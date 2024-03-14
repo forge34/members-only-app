@@ -9,6 +9,7 @@ require("dotenv").config();
 const indexRouter = require("./routes/index");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
+const { runDB } = require("./config/database");
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
+
+// Database run
+runDB(process.env.DBSTRING);
 
 // Sessions setup
 app.use(
@@ -32,7 +36,10 @@ app.use(
 // Import Passport config
 require("./config/passport");
 app.use(passport.session());
-
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

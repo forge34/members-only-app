@@ -2,5 +2,10 @@ extends layout
 
 block content
   h1 Members-only App
-  a(href="/login") Login
-  a(href="/signup") Signup
+
+  if !logged
+    a(href="/login") Login
+    a(href="/signup") Signup
+  else
+    h1 Welcome
+    a(href="/logout") Logout
