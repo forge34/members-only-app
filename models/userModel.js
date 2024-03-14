@@ -11,14 +11,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  messages : {
-    type:Schema.Types.ObjectId,
-    ref:"Message"
-  }
+  messages: {
+    type: Schema.Types.ObjectId,
+    ref: "Message",
+  },
 });
 
-userSchema.virtual("fullname").get(function(){
-    return `${this.firstname + this.lastname}`
-})
+userSchema.virtual("fullname").get(function () {
+  return `${this.firstname + this.lastname}`;
+});
 
 module.exports = mongoose.model("User", userSchema);

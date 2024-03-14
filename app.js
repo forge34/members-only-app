@@ -16,11 +16,10 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// Import Passport config
-require("./config/passport");
-
 app.use(logger("dev"));
 app.use(express.json());
+
+// Sessions setup
 app.use(
   session({
     resave: true,
@@ -29,7 +28,12 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DBSTRING }),
   })
 );
+
+// Import Passport config
+require("./config/passport");
 app.use(passport.session());
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
