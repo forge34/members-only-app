@@ -4,19 +4,16 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 
 const verify = async (username, password, done) => {
-  const user = await User.findOne().where("name").equals(user.username).exec();
+  const user = await User.findOne().where("username").equals(username).exec();
 
-  if (!user.errors()) {
-    return done(null, false, { message: "User not found" });
-  }
 
   const match = await bcrypt.compare(password, user.password);
-
+  
   if (!match) {
     return done(null, false, { message: "Wrong username or password" });
   }
 
-  return done(null, false);
+  return done(null, user);
 };
 
 const strategy = new localStrategy(verify);
@@ -28,7 +25,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id)
+  const user = await User.findById(id);
 
   done(null, user);
 });
