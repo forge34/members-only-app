@@ -1,17 +1,22 @@
 extends layout
 
 block content
-    form(method="POST")
-        label(for="firstname") Firstname
-        input(name="firstname")
+    .form
 
-        label(for="lastname") Lastname
-        input(name="lastname")
+        h1 Sign up
+        form(method="POST")
 
-        label(for="username") Username
-        input(name="username")
+            .input-group    
+                label(for="firstname") Firstname
+                input(name="firstname")
+            .input-group
+                label(for="lastname") Lastname
+                input(name="lastname")
+            .input-group
+                label(for="username") Username
+                input(name="username")
+            .input-group
+                label(for="password") Password
+                input(name="password" type="password")
 
-        label(for="password") Password
-        input(name="password" type="password")
-
-        button Submit
+            button.btn Submit

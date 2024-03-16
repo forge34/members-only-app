@@ -12,8 +12,7 @@ router.get("/", function (req, res, next) {
   }
 });
 
-
-// login / logout routes
+// login route
 router.get("/login", (req, res) => {
   res.render("login");
 });
@@ -26,11 +25,12 @@ router.post(
   })
 );
 
-router.get("/logout" , (req,res,next) => {
+// logout route
+router.get("/logout", (req, res, next) => {
   req.logout((err) => {
-      res.redirect("/");
-  })
-})
+    res.redirect("/");
+  });
+});
 
 // Sign up routes
 router.get("/signup", signupGet);

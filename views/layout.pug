@@ -4,4 +4,15 @@ html
     title Members-only App
     link(rel='stylesheet', href='/stylesheets/main.css')
   body
+    .header
+          h1.title Members-only App
+            a(href="/")
+
+          if !logged
+            a(href="/login").push.link-btn Login
+          else
+            a(href="/logout").push.link-btn Log out
+
+          a(href="/signup").link-btn Sign up
+
     block content

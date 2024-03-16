@@ -1,6 +1,97 @@
-.test {
+* {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  text-decoration: none;
+}
+
+.push {
+  margin-left: auto !important;
+}
+
+.header {
+  display: flex;
+  padding: 0.5em;
+}
+
+.link-btn {
+  margin-inline: 0.5em;
+  padding: 0.5em 0.8em;
+  background-color: #9067C6;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  align-self: flex-start;
+  transition: opacity 0.4s ease-in-out 0.1s;
+}
+
+.link-btn:hover {
+  opacity: 0.7;
+}
+
+.link-btn:visited {
+  color: white;
+}
+
+.content {
+  height: 100%;
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em 1.5em;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 1px;
+  width: max-content;
+  box-shadow: 3px 3px 2px 3px black;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  margin: 1em 0;
+}
+
+.input-group label {
+  margin: 0.3em 0;
+}
+
+.input-group input {
+  font-size: inherit;
+  border-radius: 4px;
+  padding: 0.1em;
+  width: 32ch;
+}
+
+.btn {
+  padding: 0.3em 0.7em;
+  font-size: 1.2rem;
+  background-color: white;
+  border-style: solid;
+  border-color: #9067C6;
+  color: black;
+  border-radius: 8px;
+  border-width: 2px;
+  transition: all 0.4s ease-in;
+}
+
+.btn:hover {
+  background-color: #9067C6;
+  color: white;
 }
 
 /*# sourceMappingURL=main.css.map */
