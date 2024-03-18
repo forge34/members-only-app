@@ -5,8 +5,8 @@ html
     link(rel='stylesheet', href='/stylesheets/main.css')
   body
     .header
-          h1.title Members-only App
-            a(href="/")
+          h1
+            a(href="/").title Members-only App
 
           if !logged
             a(href="/login").push.link-btn Login

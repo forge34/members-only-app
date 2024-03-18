@@ -16,7 +16,11 @@ block content
                 label(for="username") Username
                 input(name="username")
             .input-group
-                label(for="password") Password
+                label(for="password" autocomplete="new-password") Password
                 input(name="password" type="password")
+
+            .input-group
+                label(for="confirmPassword" autocomplete="on") Confirm Password
+                input(name="confirmPassword" type="password")
 
             button.btn Submit
