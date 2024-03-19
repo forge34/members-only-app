@@ -3,10 +3,12 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const expressAsyncHandler = require("express-async-handler");
 
+/* Sign up get */
 function signupGet(req, res, next) {
   res.render("signup");
 }
 
+/* Check if user exists function */
 const userExists = async (username) => {
   const exists = await User.findOne({ name: username });
 
@@ -15,40 +17,52 @@ const userExists = async (username) => {
   }
 };
 
-const confirmPassword = async (pass, { req }) => {
-    console.log(pass,req.body.password)
-    return pass === req.body.password
+/* Confirm password */
+const confirmPassword = (pass, { req }) => {
+  return pass === req.body.password;
 };
 
+/* POST : signup controller  */
 const signupPost = [
+  // validate Firstname
   body("firstname")
     .trim()
-    .isLength({ min: 5 })
+    .isLength({ min: 4, max: 30 })
     .withMessage("Minimum length is 5")
     .escape(),
+
+  // Validate lastname
   body("lastname")
     .trim()
     .isLength({ min: 5 })
     .withMessage("Minimum length is 5")
     .escape(),
+
+  // Validate Username
   body("username").trim().isLength({ min: 5 }).escape().custom(userExists),
+
+  // Validate password
   body("password")
+    .trim()
+    .isLength({ min: 6, max: 30 })
+    .withMessage("Minimum length is 5")
+    .escape(),
+
+  // confirm password validation
+  body("confirmPassword")
     .trim()
     .isLength({ min: 5 })
     .withMessage("Minimum length is 5")
-    .escape(),
-  body("confirmPassword")
-  .trim().isLength({min:5}).withMessage("Minimum length is 5")
+    .escape()
     .custom(confirmPassword)
     .withMessage("Passwords don't match"),
 
   expressAsyncHandler(signup),
 ];
 
+/* sign up user function */
 async function signup(req, res, next) {
   const errors = validationResult(req);
-
-  console.log(errors);
 
   if (errors.isEmpty()) {
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
