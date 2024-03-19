@@ -1,6 +1,6 @@
 const express = require("express");
 const { signupGet, signupPost } = require("../controllers/signup-controller");
-const passport = require("passport");
+const { loginGet, loginPost } = require("../controllers/login-controller");
 const router = express.Router();
 
 /* GET home page. */
@@ -13,17 +13,9 @@ router.get("/", function (req, res, next) {
 });
 
 // login route
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+router.get("/login", loginGet);
 
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login-failure",
-  })
-);
+router.post("/login",loginPost);
 
 // logout route
 router.get("/logout", (req, res, next) => {

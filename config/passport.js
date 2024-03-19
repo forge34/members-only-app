@@ -1,6 +1,6 @@
 const passport = require("passport");
 const localStrategy = require("passport-local");
-const User = require("../models/userModel");
+const User = require("../models/user-model");
 const bcrypt = require("bcryptjs");
 
 const verify = async (username, password, done) => {
