@@ -8,4 +8,7 @@ block content
                 label(for="passcode") Enter passcode
                 input(type="text" name="passcode")
 
+                if error
+                    h6.error #{error}
+
             button.btn Join club 
