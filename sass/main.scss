@@ -143,3 +143,17 @@ body {
   font-size: 0.9rem;
   margin-left: 20px;
 }
+
+.msg-info {
+  display: flex;
+}
+
+.msg-date {
+  align-self: center;
+  margin-inline: 0.5em;
+  font-size: 0.9rem;
+}
+
+.msg-body {
+  font-size: 1.1rem;
+}

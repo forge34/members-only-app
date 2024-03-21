@@ -10,13 +10,15 @@ const {
   joinClubGet,
   joinClubPost,
 } = require("../controllers/join-club-controller");
+const { createMessagePost } = require("../controllers/message-controller");
 const router = express.Router();
-
-message = {};
+const Messages = require("../models/message-model");
 
 /* GET home page. */
-router.get("/", (req, res, next) => {
-  res.render("index", { message: message });
+router.get("/", async (req, res, next) => {
+  const messages = await Messages.find().populate("author", "username").exec();
+
+  res.render("index", { messages: messages });
 });
 
 /*  login route */
@@ -33,5 +35,7 @@ router.post("/signup", signupPost);
 
 router.get("/join", isAuth, joinClubGet);
 router.post("/join", isAuth, joinClubPost);
+
+router.post("/send-message", isAuth, createMessagePost);
 
 module.exports = router;

@@ -6,8 +6,15 @@ block content
 
         .message-board
 
+            each message in messages
+                .msg-info
+                    h2 #{message.author.username}
+                    p.msg-date  #{message.time_sent}
+                p.msg-body #{message.text}
 
-            form(method="POST").msg-form
-                input.msg-input
+            
+            if user
+                form(action="send-message" method="POST").msg-form
+                    input(type="text" name="message").msg-input
 
-                button.msg-btn Send message
+                    button.msg-btn Send message
