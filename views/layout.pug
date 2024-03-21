@@ -8,11 +8,12 @@ html
           h1
             a(href="/").title Members-only App
 
-          if !logged
+          if !user
             a(href="/login").push.link-btn Login
+            a(href="/signup").link-btn Sign up
+
           else
             a(href="/logout").push.link-btn Log out
-
-          a(href="/signup").link-btn Sign up
+            a(href="/join").link-btn Join members club
 
     block content

@@ -37,7 +37,7 @@ app.use(
 require("./config/passport");
 app.use(passport.session());
 app.use((req, res, next) => {
-  res.locals.loggedIn = req.user;
+  res.locals.user = req.user;
   next();
 });
 
