@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+form {
+  all: unset;
+}
+
 body {
   height: 100%;
   width: 100%;
@@ -99,4 +103,43 @@ body {
 .btn:hover {
   background-color: variables.$primary;
   color: white;
+}
+
+.message-board-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    align-self: center;
+  }
+}
+
+.message-board {
+  overflow-y: auto;
+  width: 100%;
+  padding: 0.1em;
+  margin: 0.5em;
+}
+
+.msg-form {
+  margin-top: auto;
+}
+
+.msg-input {
+  width: 100ch;
+  padding: 0.1em;
+  font-size: 1.15rem;
+  border-radius: 6px;
+  border-width: 1px;
+}
+
+.msg-btn {
+  background-color: variables.$primary;
+  border-radius: 30px;
+  color: white;
+  padding: 0.5em 1em;
+  border-style: none;
+  font-size: 0.9rem;
+  margin-left: 20px;
 }

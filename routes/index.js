@@ -1,13 +1,22 @@
 const express = require("express");
 const { signupGet, signupPost } = require("../controllers/signup-controller");
-const { loginGet, loginPost, logOut } = require("../controllers/login-controller");
+const {
+  loginGet,
+  loginPost,
+  logOut,
+} = require("../controllers/login-controller");
 const { isAuth } = require("./auth");
-const { joinClubGet, joinClubPost } = require("../controllers/join-club-controller");
+const {
+  joinClubGet,
+  joinClubPost,
+} = require("../controllers/join-club-controller");
 const router = express.Router();
+
+message = {};
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("index", { message: message });
 });
 
 /*  login route */
@@ -23,6 +32,6 @@ router.get("/signup", signupGet);
 router.post("/signup", signupPost);
 
 router.get("/join", isAuth, joinClubGet);
-router.post("/join" , isAuth,joinClubPost)
+router.post("/join", isAuth, joinClubPost);
 
 module.exports = router;
