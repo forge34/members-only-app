@@ -25,18 +25,10 @@ const confirmPassword = (pass, { req }) => {
 /* POST : signup controller  */
 const signupPost = [
   // validate Firstname
-  body("firstname")
-    .trim()
-    .isLength({ min: 4, max: 30 })
-    .withMessage("Minimum length is 5")
-    .escape(),
+  body("firstname").trim().notEmpty().escape(),
 
   // Validate lastname
-  body("lastname")
-    .trim()
-    .isLength({ min: 5 })
-    .withMessage("Minimum length is 5")
-    .escape(),
+  body("lastname").trim().notEmpty().escape(),
 
   // Validate Username
   body("username").trim().isLength({ min: 5 }).escape().custom(userExists),
@@ -56,7 +48,7 @@ const signupPost = [
     .escape()
     .custom(confirmPassword)
     .withMessage("Passwords don't match"),
-
+  body("admin").toBoolean(),
   expressAsyncHandler(signup),
 ];
 
@@ -71,6 +63,7 @@ async function signup(req, res, next) {
         lastname: req.body.lastname,
         username: req.body.username,
         password: hashedPassword,
+        is_admin: req.body.admin,
         membership: "Normal",
       });
       console.log(user);
@@ -78,6 +71,7 @@ async function signup(req, res, next) {
       res.redirect("/");
     });
   } else {
+    console.log(errors);
     res.redirect("/signup");
   }
 }

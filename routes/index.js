@@ -37,5 +37,8 @@ router.get("/join", isAuth, joinClubGet);
 router.post("/join", isAuth, joinClubPost);
 
 router.post("/send-message", isAuth, createMessagePost);
+router.post("/delete-message" , (req,res,next) => {
+  
+})
 
 module.exports = router;

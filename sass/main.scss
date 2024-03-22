@@ -88,7 +88,16 @@ body {
   font-size: inherit;
 }
 
-.btn {
+.delete-btn {
+  border-radius: 5px;
+  background-color: variables.$primary;
+  color: white;
+  padding: 0.3em 0.7em;
+  border-style: none;
+  align-self: center;
+}
+
+.submit-btn {
   padding: 0.3em 0.7em;
   font-size: 1.2rem;
   background-color: white;
@@ -100,12 +109,13 @@ body {
   transition: all 0.4s ease-in;
 }
 
-.btn:hover {
+.submit-btn:hover {
   background-color: variables.$primary;
   color: white;
 }
 
 .message-board-section {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -118,8 +128,7 @@ body {
 .message-board {
   overflow-y: auto;
   width: 100%;
-  padding: 0.1em;
-  margin: 0.5em;
+  padding: 1em;
 }
 
 .msg-form {
@@ -156,4 +165,15 @@ body {
 
 .msg-body {
   font-size: 1.1rem;
+}
+
+.checkbox {
+  input {
+    width: initial;
+    font-size: inherit;
+  }
+  label {
+    margin-inline: 0.5em;
+  }
+  flex-direction: row;
 }

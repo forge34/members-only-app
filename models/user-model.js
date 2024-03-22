@@ -7,13 +7,10 @@ const userSchema = new Schema({
   lastname: { type: String, required: true },
   username: { type: String, required: true },
   membership: { type: String },
+  is_admin:{type:Boolean},
   password: {
     type: String,
     required: true,
-  },
-  messages: {
-    type: Schema.Types.ObjectId,
-    ref: "Message",
   },
 });
 
