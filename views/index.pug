@@ -14,7 +14,7 @@ block content
                         p.msg-date  #{message.time_sent}
 
                         if user.is_admin
-                            form(action="/delete-message" method="POST").push
+                            form(action=("/delete-" + message._id) method="POST").push
                                 button.delete-btn delete
                     else
                         h2 Anonymous

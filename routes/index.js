@@ -13,6 +13,7 @@ const {
 const { createMessagePost } = require("../controllers/message-controller");
 const router = express.Router();
 const Messages = require("../models/message-model");
+const expressAsyncHandler = require("express-async-handler");
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
@@ -37,8 +38,13 @@ router.get("/join", isAuth, joinClubGet);
 router.post("/join", isAuth, joinClubPost);
 
 router.post("/send-message", isAuth, createMessagePost);
-router.post("/delete-message" , (req,res,next) => {
-  
-})
+router.post(
+  "/delete-:message",
+  expressAsyncHandler(async (req, res, next) => {
+    const msgID = req.url.split("-")[1];
+    await Messages.findByIdAndDelete(msgID);
+    res.redirect("/");
+  })
+);
 
 module.exports = router;
