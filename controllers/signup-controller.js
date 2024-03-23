@@ -31,7 +31,7 @@ const signupPost = [
   body("lastname").trim().notEmpty().escape(),
 
   // Validate Username
-  body("username").trim().isLength({ min: 5 }).escape().custom(userExists),
+  body("username").trim().notEmpty().escape().custom(userExists),
 
   // Validate password
   body("password")
