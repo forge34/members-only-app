@@ -2,7 +2,6 @@ const { body, validationResult } = require("express-validator");
 const Messages = require("../models/message-model");
 const expressAsyncHandler = require("express-async-handler");
 
-
 const createMessage = expressAsyncHandler(async (req, res, next) => {
   const errors = validationResult(req);
 
@@ -12,11 +11,10 @@ const createMessage = expressAsyncHandler(async (req, res, next) => {
       author: res.locals.user._id,
     });
 
-    await message.save()
-    res.redirect("/")
-  }else {
-    console.log(errors)
-    res.redirect("/")
+    await message.save();
+    res.redirect("/");
+  } else {
+    res.redirect("/");
   }
 });
 

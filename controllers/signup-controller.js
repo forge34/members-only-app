@@ -66,12 +66,10 @@ async function signup(req, res, next) {
         is_admin: req.body.admin,
         membership: "Normal",
       });
-      console.log(user);
       await user.save();
       res.redirect("/");
     });
   } else {
-    console.log(errors);
     res.redirect("/signup");
   }
 }

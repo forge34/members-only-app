@@ -8,18 +8,13 @@ const joinClubPost = expressAsyncHandler(async (req, res, next) => {
   const user = await Users.findById(res.locals.user._id).exec();
 
   if (req.body.passcode === "1234") {
-
     if (user.membership === "Club member") {
-      
       res.render("join-club", { error: "You are already a club member" });
-
     } else {
-
-      user.membership = "Club member";
-      await user.save();
+      await user.updateOne({membership:"Club member"}).exec()
+      res.redirect("/");
     }
   }
-  res.redirect("/");
 });
 
 module.exports = {
