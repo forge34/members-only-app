@@ -6,9 +6,12 @@ const bcrypt = require("bcryptjs");
 const verify = async (username, password, done) => {
   const user = await User.findOne().where("username").equals(username).exec();
 
+  if (!user) {
+    return done(null, false, { message: "User doesn't exist" });
+  }
 
   const match = await bcrypt.compare(password, user.password);
-  
+
   if (!match) {
     return done(null, false, { message: "Wrong username or password" });
   }
@@ -25,7 +28,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id).select({password:0});
+  const user = await User.findById(id).select({ password: 0 });
 
   done(null, user);
 });
