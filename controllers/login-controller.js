@@ -7,7 +7,7 @@ function loginGet(req,res,next) {
 
 const loginPost = passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login-failure",
+    failureRedirect: "/login",
 })
 
 const logOut = (req, res, next) => {
